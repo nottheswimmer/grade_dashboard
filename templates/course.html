@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block title %}{{ course.name }}{% endblock %}
+{% block content %}
+    <p>Hi, {{ name }}!</p>
+
+    <h1>{{ course.name }}</h1>
+
+    <ul>
+        {% for group, assignments_and_submissions in groups.values() %}
+            {% if group.group_weight and group.group_weight > 0 %}
+            <li> {{ group }} - {{ group.group_weight }}%
+                <ul>
+                    {% for assignment, submission in assignments_and_submissions %}
+                        <li>{{ assignment }} - {{ submission.score|default("N/A") }} / {{ assignment.points_possible }} - {{ submission.graded_at_date|default("ungraded") }}</li>
+                    {% endfor %}
+                </ul>
+            </li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+
+{% endblock %}

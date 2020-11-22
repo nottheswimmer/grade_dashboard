@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block title %}Select a course{% endblock %}
+{% block content %}
+    <p>Hi, {{ name }}!</p>
+
+    Select a course:
+    <ul>
+    {% for course in courses %}
+        <li><a href="course/{{ course.id }}">{{ course.name }}</a></li>
+    {% endfor %}
+    </ul>
+
+{% endblock %}

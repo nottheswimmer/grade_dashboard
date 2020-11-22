@@ -1,0 +1,15 @@
+{% block title %}Home{% endblock %}
+{% block content %}
+<form method="POST" action="/login">
+    <label for="canvasUrl"><strong>Institution Canvas URL</strong></label>
+    <input type="text" value="http://uncc.instructure.com/" name="canvasUrl" required>
+
+    <label for="canvasToken"><strong>Token</strong></label>
+    <input type="password" placeholder="Enter canvas token" name="canvasToken" required>
+
+    <button type="submit">Login</button>
+    <label>
+      <input type="checkbox" checked="checked" name="remember"> Remember me
+    </label>
+</form>
+{% endblock %}
