@@ -1,13 +1,23 @@
 {% extends 'base.html' %}
 {% block title %}Select a course{% endblock %}
 {% block content %}
-    <p>Hi, {{ name }}!</p>
+    <div class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1 class="h2">Please select a course.</h1>
+                    <p>You are signed in as {{ name }}.</p>
 
-    Select a course:
-    <ul>
-    {% for course in courses %}
-        <li><a href="course/{{ course.id }}">{{ course.name }}</a></li>
-    {% endfor %}
-    </ul>
+                    <div class="list-group">
+                        {% for course in courses %}
+                            <a href="{{ url_for('show_grade', course_id=course.id) }}"
+                               class="list-group-item list-group-item-action">{{ course.name }}</a>
+                        {% endfor %}
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
 
 {% endblock %}

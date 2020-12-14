@@ -1,15 +1,44 @@
+{% extends 'base.html' %}
 {% block title %}Home{% endblock %}
 {% block content %}
-<form method="POST" action="/login">
-    <label for="canvasUrl"><strong>Institution Canvas URL</strong></label>
-    <input type="text" value="http://uncc.instructure.com/" name="canvasUrl" required>
-
-    <label for="canvasToken"><strong>Token</strong></label>
-    <input type="password" placeholder="Enter canvas token" name="canvasToken" required>
-
-    <button type="submit">Login</button>
-    <label>
-      <input type="checkbox" checked="checked" name="remember"> Remember me
-    </label>
-</form>
+    <main>
+        <div class="py-5">
+            <div class="container">
+                <div class="row">
+                    <div class="px-5 col-md-8 text-center mx-auto">
+                        <h3 class="text-primary display-4"><b>Welcome, student</b></h3>
+                        <p class="mb-3">Use the login form below to access your course
+                            information. From there, you can select a course and visualize your academic progress!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="py-5 text-center"
+             style="background-image: url({{ url_for('static', filename='cover-bubble-dark.svg') }}); background-size: cover;">
+            <div class="container">
+                <div class="row">
+                    <div class="mx-auto col-md-6 col-10 bg-white p-5">
+                        <h1 class="mb-4">Log in</h1>
+                        <form method="POST" action="/login">
+                            <div class="form-group"><input class="form-control" placeholder="Institution URL"
+                                                           id="canvasUrl" name="canvasUrl" required></div>
+                            <div class="form-group mb-3"><input type="password" class="form-control" name="canvasToken"
+                                                                placeholder="Access Token" id="canvasToken" required> <small
+                                    class="form-text text-muted text-right">
+                                <a target="_blank" id="tokenLink" href="https://uncc.instructure.com/profile/settings"> Click here to generate a new access token</a>
+                            </small></div>
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script>
+    $canvasUrl = $("#canvasUrl");
+    $tokenLink = $("#tokenLink");
+    $canvasUrl.change(function(e) {
+        $tokenLink.attr("href", $canvasUrl.val() + "/profile/settings")
+    })
+    </script>
 {% endblock %}
